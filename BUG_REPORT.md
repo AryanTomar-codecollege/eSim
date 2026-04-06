@@ -4,12 +4,28 @@
 **GitHub:** AryanTomar-codecollege  
 **Fellowship:** FOSSEE Summer Fellowship 2026 — Screening Task 4  
 **Institution:** Dronacharya College of Engineering  
+**Email:** tomararyan361@gmail.com
 
 ---
 
 ## Overview
 
 This repository contains fixes for dependency and compatibility issues encountered while installing eSim 2.5 on Ubuntu 25.04 (Plucky Puffin). The installation was performed inside VirtualBox on a Windows host machine. A total of 8 bugs were identified, 5 were fixed, and 3 were documented with proposed solutions.
+
+---
+
+## Quick Summary
+
+| Bug | Description | Status |
+|-----|-------------|--------|
+| Bug 1 | Main installer has no Ubuntu 25.04 support | ✅ Fixed |
+| Bug 2 | KiCad 6.0 PPA has no release for Ubuntu 25.04 | ✅ Fixed |
+| Bug 3 | KiCad requires libgit2-1.8 — unavailable in Ubuntu 25.04 | ⚠️ Workaround |
+| Bug 4 | NGHDL installer has no Ubuntu 25.04 support | ✅ Fixed |
+| Bug 5 | libcanberra-gtk-module removed in Ubuntu 25.04 | ✅ Fixed |
+| Bug 6 | GHDL tar file fails due to relative path issue | 📝 Documented |
+| Bug 7 | GHDL 4.1.0 does not support LLVM 20.1.2 | ⚠️ Workaround |
+| Bug 8 | Installer re-extracts zip on every run, destroying manual fixes | ✅ Fixed |
 
 ---
 
@@ -24,7 +40,7 @@ This repository contains fixes for dependency and compatibility issues encounter
 
 ---
 
-## Bugs Found and Fixes Applied
+## Detailed Bug Report
 
 ---
 
@@ -165,16 +181,17 @@ Unhandled version llvm 20.1.2
 
 ## Result
 
-After applying all fixes, eSim 2.5 was successfully installed and launched on Ubuntu 25.04 inside VirtualBox.
+After applying all fixes and workarounds, eSim 2.5 was successfully installed and launched on Ubuntu 25.04 (Plucky Puffin) inside Oracle VirtualBox. The eSim GUI opened correctly and the workspace initialisation dialog was displayed, confirming a successful installation.
 
 ---
 
 ## Files Modified
 
-- `install-eSim.sh` — Added Ubuntu 25.04 version support
-- `Ubuntu/install-eSim-scripts/install-eSim-24.04.sh` — Fixed KiCad PPA version
-- `Ubuntu/install-nghdl.sh` — Added Ubuntu 25.04 version support
-- `Ubuntu/install-nghdl-24.04.sh` — Removed unavailable libcanberra package, commented out GHDL and KiCad installations
+- `install-eSim.sh` — Added Ubuntu 25.04 version support (Bug 1)
+- `Ubuntu/install-eSim-scripts/install-eSim-24.04.sh` — Fixed KiCad PPA, commented out KiCad install (Bugs 2, 3)
+- `Ubuntu/install-nghdl.sh` — Added Ubuntu 25.04 version support (Bug 4)
+- `Ubuntu/install-nghdl-24.04.sh` — Removed libcanberra, commented out GHDL install (Bugs 5, 7)
+- `nghdl.zip` — Repacked with all NGHDL fixes applied inside (Bugs 4, 8)
 
 ---
 
